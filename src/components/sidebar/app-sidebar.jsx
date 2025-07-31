@@ -1,21 +1,13 @@
-import * as React from "react";
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Home,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
-
+import { ClientRoutes } from "@/const/ClientRoutes";
 import { NavUser } from "./nav-user";
 import { TeamSwitcher } from "./team-switcher";
 import { NavMain } from "./nav-main";
+import {
+  Building2,
+  Home,
+  LucideBadgeDollarSign,
+  PiggyBank,
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -30,48 +22,26 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
       title: "Dashboard",
-      url: "/",
+      url: `${ClientRoutes.DASHBOARD_ROUTE}`,
       icon: Home,
     },
     {
-      title: "Playground",
-      url: "/playground",
-      icon: SquareTerminal,
+      title: "Earnings",
+      url: `${ClientRoutes.EARNINGS_ROUTE}`,
+      icon: LucideBadgeDollarSign,
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
+      title: "Rent",
+      url: `${ClientRoutes.RENT_ROUTE}`,
+      icon: Building2,
     },
     {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-    },
-    {
-      title: "Settings",
-      url: "/asd",
-      icon: Settings2,
+      title: "Dividends",
+      url: `${ClientRoutes.DIVIDENDS_ROUTE}`,
+      icon: PiggyBank,
     },
   ],
 };

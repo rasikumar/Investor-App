@@ -45,7 +45,7 @@ const Dashboard = () => {
           </div>
           <ModeToggle />
         </header>
-        <div className="flex flex-col gap-4 p-2">
+        <div className="flex flex-col gap-4 py-2 px-4">
           <Outlet />
         </div>
       </SidebarInset>
