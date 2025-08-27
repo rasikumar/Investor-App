@@ -101,7 +101,13 @@ export function LoginForm({ className, ...props }) {
           /> */}
 
           <Button type="submit" className="w-full">
-            {!loading ? "Sign Up" : <Loading />}
+            {!loading ? (
+              "Sign Up"
+            ) : (
+              <div className="animate-fadeIn">
+                <Loading />
+              </div>
+            )}
           </Button>
 
           <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:flex after:items-center after:border-t">
