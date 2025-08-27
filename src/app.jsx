@@ -9,18 +9,28 @@ import Earnings from "./pages/DashBoard/Earnings";
 import NotFoundPage from "./pages/NotFoundPage";
 import Rent from "./pages/DashBoard/Rent";
 import Dividends from "./pages/DashBoard/Dividends";
+import Index from "./pages/LandingScreen/Index";
 
 const App = () => {
+  const isAuth = true;
   return (
     <>
       <Routes>
+        {isAuth ? (
+          <Route index element={<Index />} />
+        ) : (
+          <Route path={ClientRoutes.INDEX_ROUTE} element={<Dashboard />}>
+            <Route index element={<Home />} />
+            <Route path={ClientRoutes.EARNINGS_ROUTE} element={<Earnings />} />
+            <Route path={ClientRoutes.RENT_ROUTE} element={<Rent />} />
+            <Route
+              path={ClientRoutes.DIVIDENDS_ROUTE}
+              element={<Dividends />}
+            />
+          </Route>
+        )}
         <Route path={ClientRoutes.LOGIN_ROUTE} element={<LoginPage />} />
-        <Route path={ClientRoutes.DASHBOARD_ROUTE} element={<Dashboard />}>
-          <Route index element={<Home />} />
-          <Route path={ClientRoutes.EARNINGS_ROUTE} element={<Earnings />} />
-          <Route path={ClientRoutes.RENT_ROUTE} element={<Rent />} />
-          <Route path={ClientRoutes.DIVIDENDS_ROUTE} element={<Dividends />} />
-        </Route>
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

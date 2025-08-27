@@ -25,7 +25,7 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: `${ClientRoutes.DASHBOARD_ROUTE}`,
+      url: `${ClientRoutes.INDEX_ROUTE}`,
       icon: Home,
     },
     {
