@@ -25,11 +25,13 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Link } from "react-router";
-import { ClientRoutes } from "@/const/ClientRoutes";
 
 export function NavUser({ user }) {
   const { isMobile } = useSidebar();
+
+  const handleLogout = () => {
+    localStorage.clear();
+  };
 
   return (
     <SidebarMenu>
@@ -92,12 +94,10 @@ export function NavUser({ user }) {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <Link to={ClientRoutes.LOGIN_ROUTE}>
-              <DropdownMenuItem>
-                <LogOut />
-                Log out
-              </DropdownMenuItem>
-            </Link>
+            <DropdownMenuItem onClick={handleLogout}>
+              <LogOut />
+              Log out
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

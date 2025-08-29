@@ -10,9 +10,21 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Rent from "./pages/DashBoard/Rent";
 import Dividends from "./pages/DashBoard/Dividends";
 import Index from "./pages/LandingScreen/Index";
+import OtpPage from "./pages/AuthPage/OtpPage";
+
+import { useEffect, useState } from "react";
 
 const App = () => {
-  const isAuth = true;
+  const [isAuth, setIsAuth] = useState(() => {
+    const token = localStorage.getItem("token");
+    return !token;
+  });
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuth(!token);
+  }, []);
+
   return (
     <>
       <Routes>
@@ -30,6 +42,7 @@ const App = () => {
           </Route>
         )}
         <Route path={ClientRoutes.LOGIN_ROUTE} element={<LoginPage />} />
+        <Route path={ClientRoutes.OTP_ROUTE} element={<OtpPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

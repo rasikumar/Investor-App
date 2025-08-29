@@ -7,14 +7,24 @@ const Auth = () => {
   const SignUp = useMutation({
     mutationFn: (data) => RequestApi("post", ApiRoute.SIGN_UP, data),
     onSuccess: (res) => {
-      localStorage.setItem("user", res.user);
       toast.success(res.message);
     },
     onError: (res) => {
-        toast.error(res.message)
-    }
+      toast.error(res.message);
+    },
+  });
+  const OTPVerify = useMutation({
+    mutationFn: ({data , userId}) => RequestApi("post", `${ApiRoute.VERIFY_USER}/${userId}`, data),
+    onSuccess: (res) => {
+      localStorage.setItem("user", JSON.stringify(res.user));
+      localStorage.setItem("token", res.token);
+      toast.success(res.message);
+    },
+    onError: (res) => {
+      toast.error(res.message);
+    },
   });
 
-  return { SignUp };
+  return { SignUp, OTPVerify };
 };
 export default Auth;

@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { ClientRoutes } from "@/const/ClientRoutes";
 import Auth from "@/hooks/AuthHandles";
 import { useState } from "react";
@@ -26,6 +26,7 @@ const loginSchema = z.object({
 });
 
 export function LoginForm({ className, ...props }) {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const auth = Auth();
   const { SignUp } = auth;
@@ -40,8 +41,11 @@ export function LoginForm({ className, ...props }) {
   const onSubmit = (values) => {
     setLoading(true);
     SignUp.mutate(values, {
-      onSuccess: () => {
+      onSuccess: (data) => {
         setLoading(false);
+        console.log("data", data?.user?._id);
+        const VerifyId = data?.user?._id;
+        navigate(ClientRoutes.OTP_ROUTE, { state: { VerifyId } });
       },
       onError: () => {
         setLoading(false);
