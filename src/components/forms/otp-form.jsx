@@ -46,7 +46,6 @@ const OtpForm = ({ userId }) => {
     const data = {
       otp: parseInt(value.otp, 10),
     };
-    console.log("data", data);
     setLoading(true);
     OTPVerify.mutate(
       { data, userId },
@@ -55,6 +54,7 @@ const OtpForm = ({ userId }) => {
           setLoading(false);
           form.reset();
           navigate(ClientRoutes.INDEX_ROUTE);
+          window.location.reload();
         },
         onError: () => {
           setLoading(false);
@@ -65,7 +65,7 @@ const OtpForm = ({ userId }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
         <FormField
           control={form.control}
           name="otp"
@@ -94,7 +94,7 @@ const OtpForm = ({ userId }) => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
+        <Button type="submit" disabled={loading} className="w-full">
           {!loading ? (
             "Submit"
           ) : (

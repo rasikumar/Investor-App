@@ -3,4 +3,8 @@ export const ApiRoute = {
     VERIFY_USER : "/auth/verify",
     GOOGLE_SIGN : "/auth/verify",
     GOOGLE_SIGN_CALLBACK : "/auth/google/callback",
+
+    USER_DASHBOARD : "/users/dashboard",
+
+    CASH_DEPOSIT : "/payment/deposit"
 }

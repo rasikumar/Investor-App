@@ -28,8 +28,7 @@ const loginSchema = z.object({
 export function LoginForm({ className, ...props }) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const auth = Auth();
-  const { SignUp } = auth;
+  const { SignUp } = Auth();
 
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -43,7 +42,6 @@ export function LoginForm({ className, ...props }) {
     SignUp.mutate(values, {
       onSuccess: (data) => {
         setLoading(false);
-        console.log("data", data?.user?._id);
         const VerifyId = data?.user?._id;
         navigate(ClientRoutes.OTP_ROUTE, { state: { VerifyId } });
       },
@@ -104,7 +102,7 @@ export function LoginForm({ className, ...props }) {
             )}
           /> */}
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" disabled={loading}>
             {!loading ? (
               "Sign Up"
             ) : (
